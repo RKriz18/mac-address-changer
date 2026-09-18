@@ -46,6 +46,16 @@ New MAC Address > 00:21:31:41:51:61
  [+] Changing MAC address for eth0 to 00:21:31:41:51:61
 ```
 
+## Demo
+
+Running the script and entering an interface and new MAC address:
+
+![Running mac_changer.py](demo-run.png)
+
+Verifying the change took effect with `ifconfig`:
+
+![Verifying the new MAC address](demo-verify.png)
+
 ## Known Limitations / Security Notes
 
 This is a learning project and currently has no input validation, which I identified while building it:
