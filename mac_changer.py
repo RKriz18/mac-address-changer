@@ -18,22 +18,17 @@ You will be prompted for:
 Note: requires root privileges and the 'net-tools' package (for ifconfig).
 """
 
+#!/usr/bin/env python3
+
 import subprocess
 
+# Ask the user which interface to target and what MAC address to set
+interface = input("Interface > ")
+mac_address = input("New MAC Address > ")
 
-def change_mac(interface: str, mac_address: str) -> None:
-    """Bring an interface down, set a new MAC address, then bring it back up."""
-    print(f" [+] Changing MAC address for {interface} to {mac_address}")
-    subprocess.call("ifconfig " + interface + " down", shell=True)
-    subprocess.call("ifconfig " + interface + " hw ether " + mac_address, shell=True)
-    subprocess.call("ifconfig " + interface + " up", shell=True)
+print(" [+] Changing MAC Address for " + interface + " to " + mac_address)
 
-
-def main():
-    interface = input("Interface > ")
-    mac_address = input("New MAC Address > ")
-    change_mac(interface, mac_address)
-
-
-if __name__ == "__main__":
-    main()
+# Bring the interface down, apply the new MAC address, then bring it back up
+subprocess.call("ifconfig " + interface + " down", shell=True)
+subprocess.call("ifconfig " + interface + " hw ether " + mac_address, shell=True)
+subprocess.call("ifconfig " + interface + " up", shell=True)
